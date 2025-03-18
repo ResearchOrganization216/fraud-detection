@@ -17,7 +17,7 @@ spec:
       serviceAccountName: innoainsure-ksa
       containers:
         - name: backend
-          image: asia-southeast1-docker.pkg.dev/innoainsure-project/innoainsure-be/fraud-detection:latest
+          image: asia-southeast1-docker.pkg.dev/innoainsure-project-43/innoainsure-be/fraud-detection:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 5006
