@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fraud-detection
+  labels:
+    app: fraud-detection
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fraud-detection
+  template:
+    metadata:
+      labels:
+        app: fraud-detection
+    spec:
+      serviceAccountName: innoainsure-ksa
+      containers:
+        - name: backend
+          # The image will be substituted by the CI/CD workflow; placeholder below.
+          image: asia-southeast1-docker.pkg.dev/innoainsure-project/innoainsure-be/fraud-detection:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5006
+          env:
+            - name: PORT
+              value: "5006"
