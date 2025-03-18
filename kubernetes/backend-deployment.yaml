@@ -5,7 +5,7 @@ metadata:
   labels:
     app: fraud-detection
 spec:
-  replicas: 1
+  replicas: 1 # Only one pod will be created
   selector:
     matchLabels:
       app: fraud-detection
@@ -17,7 +17,6 @@ spec:
       serviceAccountName: innoainsure-ksa
       containers:
         - name: backend
-          # The image will be substituted by the CI/CD workflow; placeholder below.
           image: asia-southeast1-docker.pkg.dev/innoainsure-project/innoainsure-be/fraud-detection:latest
           imagePullPolicy: Always
           ports:
@@ -25,3 +24,10 @@ spec:
           env:
             - name: PORT
               value: "5006"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
